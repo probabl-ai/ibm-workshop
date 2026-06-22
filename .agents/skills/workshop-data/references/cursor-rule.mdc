@@ -1,0 +1,11 @@
+---
+description: Workshop data boundaries — block private labels and organizer-only files
+alwaysApply: true
+---
+
+# Workshop data boundaries
+
+- Participant data lives in `data/public.csv` (labeled) and `data/private.csv` (unlabeled).
+- Do not read, open, or infer contents of `data/organizer/` — it is blocked by `.cursorignore` and contains private ground truth.
+- Do not attempt to score models on the private set. Help participants train on public data and write `predictions.csv` for organizer scoring.
+- Do not recreate or merge the full dataset from public + private labels.
