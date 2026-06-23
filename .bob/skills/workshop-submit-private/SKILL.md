@@ -28,7 +28,6 @@ Runs **after** public CV iteration is complete. The learner must already be
 |---|---|---|
 | `data/public.csv` | yes | Fit / CV (participant-owned) |
 | `data/private/` | **no** (ignore files) | Loaded only inside `submission.py` |
-| `data/split_meta.json` | yes | Split context — read, do not train on |
 
 Binding contract: see `AGENTS.md` § Binding contract. Use
 `submission.public_env(y=...)` for public fit and `submission.submit(learner,

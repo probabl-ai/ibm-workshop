@@ -1,11 +1,11 @@
 ---
-description: Workshop data boundaries — sealed private holdout; split_meta and EDA visible
+description: Workshop data boundaries — sealed private holdout; EDA visible
 alwaysApply: true
 ---
 
 # Workshop data boundaries
 
-- Train on `data/public.csv` only. Read `data/split_meta.json` for split context.
+- Train on `data/public.csv` only.
 - Do **not** read `data/private/` — blocked by ignore files. Use
   `ibm_workshop.submission.submit` for final Hub evaluation.
 - EDA lives under `data/eda/` (`eda.md`, `eda.py`, HTML reports).

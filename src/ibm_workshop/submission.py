@@ -8,17 +8,14 @@ from __future__ import annotations
 
 import os
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Any
+from typing import Any
 
 import pandas as pd
 import skore
 from sklearn.utils.validation import check_is_fitted
-from skore import login
+from skore import EstimatorReport, login
 
 from ibm_workshop import PROJECT_ROOT
-
-if TYPE_CHECKING:
-    from skore import EstimatorReport
 
 DATA_DIR = PROJECT_ROOT / "data"
 PUBLIC_CSV = DATA_DIR / "public.csv"
@@ -43,6 +40,11 @@ def public_env(*, y: Any) -> dict[str, Any]:
 def private_env() -> dict[str, str]:
     """Env-dict for private inference (features only, no labels)."""
     return {"data_dir": str(DATA_DIR), "which": "private"}
+
+
+def _public_train_data() -> dict[str, Any]:
+    public = pd.read_csv(PUBLIC_CSV)
+    return public_env(y=public[TARGET_COL].to_numpy())
 
 
 def _private_eval_data() -> dict[str, Any]:
@@ -91,7 +93,12 @@ def submit(learner: Any, *, stem: str) -> SubmissionResult:
         msg = "SKORE_HUB_WORKSPACE must be set in the environment (.env)"
         raise RuntimeError(msg)
 
-    report = skore.evaluate(learner, data=_private_eval_data(), splitter="prefit")
+    report = EstimatorReport(
+        learner,
+        train_data=_public_train_data(),
+        test_data=_private_eval_data(),
+        fit=False,
+    )
 
     login(mode="hub")
     project = skore.Project(workspace, mode="hub")

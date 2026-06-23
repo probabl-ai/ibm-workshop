@@ -10,7 +10,7 @@
 ## Data understanding (EDA)
 
 - **Status:** done — 2026-06-23
-- **Summary:** 450×32 numeric tabular set (`data/public.csv`); no missing values; binary `target` with mild imbalance (168×0, 282×1); no datetime/group structure; strong worst-perimeter / concave-points signal. Drop `sample_id` from features.
+- **Summary:** 450×32 numeric tabular set (`data/public.csv`); no missing values; binary `target` imbalanced (136×0, 314×1); no datetime/group structure; strongest target links on radius/concavity features; tight collinearity among size-related columns. Drop `sample_id` from features.
 - **Report:** [data/eda/eda.md](../data/eda/eda.md)
 
 ## History
