@@ -3,7 +3,7 @@
 ## Status
 
 - **Project / dataset:** IBM breast cancer workshop — `data/public.csv` (450 labeled samples, 30 numeric features + `target`)
-- **Goal:** maximize ROC-AUC on cross-validated `data/public.csv`, then fit on full public data, evaluate on the private holdout, and push that evaluation to Skore Hub
+- **Goal:** maximize ROC-AUC on cross-validated `data/public.csv`, then fit on full public data, evaluate every catalog estimator on `data/test/`, and push those evaluations to Skore Hub
 - **Last experiment:** n/a — bootstrap
 - **Last result:** n/a
 

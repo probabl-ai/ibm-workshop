@@ -32,7 +32,7 @@
     "glitch_cell_fraction": 0.06318518518518519,
     "labels_flipped": 36.0
   },
-  "private": {
+  "test": {
     "n_rows": 119,
     "n_features": 30,
     "target_counts": {

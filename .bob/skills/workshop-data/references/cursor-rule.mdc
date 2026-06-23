@@ -1,12 +1,11 @@
 ---
-description: Workshop data boundaries — sealed private holdout; EDA visible
-alwaysApply: true
+description: Workshop data boundaries — public train, visible test holdout; EDA visible
+globs: data/**
+alwaysApply: false
 ---
 
-# Workshop data boundaries
+# Workshop data
 
-- Train on `data/public.csv` only.
-- Do **not** read `data/private/` — blocked by ignore files. Use
-  `ibm_workshop.submission.submit` for final Hub evaluation.
-- EDA lives under `data/eda/` (`eda.md`, `eda.py`, HTML reports).
-- Do not train on private data.
+- Train and cross-validate on `data/public.csv` only.
+- Evaluate on `data/test/` after fitting on public data (`workshop-evaluate-test`).
+- Do not pass `data/test/labels.csv` through pipeline loaders — supply `y` in the env-dict.
