@@ -2,6 +2,9 @@
 .pixi/*
 !.pixi/config.toml
 
+# uv environments
+.venv/
+
 # python build / cache
 __pycache__/
 *.egg-info/
@@ -14,7 +17,7 @@ dist/
 .ruff_cache/
 .mypy_cache/
 
-# skore Project store — large/binary; commit selectively if at all
+# skore Project store
 reports/
 
 # agent scratch space

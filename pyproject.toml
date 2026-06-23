@@ -1,0 +1,38 @@
+# Minimal `pyproject.toml` for an ML experimentation workspace.
+#
+# Purpose: declare the local `src/ibm_workshop/` as an installable, editable
+# Python package so `from ibm_workshop.X import Y` works from any CWD without
+# `PYTHONPATH=src` hacks. Runtime dependencies stay in the env
+# manager's manifest — this file describes the package and its dependencies.
+
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ibm-workshop"
+version = "0.1.0"
+description = "Workspace package for the ibm-workshop ML experiments."
+requires-python = ">=3.11"
+dependencies = [
+    "pandas>=3.0.3",
+    "pyarrow>=24.0.0",
+    "scikit-learn>=1.9.0",
+    "skore[hub,jupyter]>=0.21.0",
+    "skrub>=0.9.0",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.3.0",
+    "jupyterlab>=4.6.0",
+    "pytest>=9.1.1",
+    "ruff>=0.15.18",
+]
+agent = [
+    "ipython>=9.14.1",
+    "pyright>=1.1.410",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
