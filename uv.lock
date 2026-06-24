@@ -638,7 +638,7 @@ requires-dist = [
     { name = "pandas", specifier = ">=3.0.3" },
     { name = "pyarrow", specifier = ">=24.0.0" },
     { name = "scikit-learn", specifier = ">=1.9.0" },
-    { name = "skore", extras = ["hub", "jupyter"], specifier = ">=0.21.0" },
+    { name = "skore", extras = ["hub", "jupyter"], specifier = ">=0.22.0" },
     { name = "skrub", specifier = ">=0.9.0" },
 ]
 
@@ -2770,13 +2770,14 @@ wheels = [
 
 [[package]]
 name = "skore"
-version = "0.21.0"
+version = "0.22.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "diskcache" },
     { name = "jinja2" },
     { name = "joblib" },
     { name = "matplotlib" },
+    { name = "narwhals" },
     { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
     { name = "numpy", version = "2.5.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
     { name = "pandas" },
@@ -2787,9 +2788,9 @@ dependencies = [
     { name = "seaborn" },
     { name = "skrub" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/b1/9d/b596c532a99aee9888dc343978756f4ad2142f5e152721776f96965b1824/skore-0.21.0.tar.gz", hash = "sha256:2ebbee49ca742027e754e875ba79bdb7a4ff0e17b1ecc600b38d11a336614356", size = 238086, upload-time = "2026-06-18T13:02:12.448Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/29/2b/365635fcf0bdd50f1913b34bd0968c7a189e1e75297bd1c35456b6e1bbba/skore-0.22.0.tar.gz", hash = "sha256:1601c9ef05a9ee48bcc1473c99fb8ca42242e332df2e155e8ecf4a17cb13e5e3", size = 242674, upload-time = "2026-06-23T13:41:19.727Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/fd/63/df7375d0d8993aba6fff4fc52714d30bb9b914aeb7116bdebf390a78f6a0/skore-0.21.0-py3-none-any.whl", hash = "sha256:4dc87607ee4841468fac3a6a96d08cc95977139d69d0d6d3308f5983ab8eefd5", size = 320377, upload-time = "2026-06-18T13:02:10.727Z" },
+    { url = "https://files.pythonhosted.org/packages/de/73/f55c8481df3439378a93ff096c17ca3e098e72513f1cc1a696fed89d2f76/skore-0.22.0-py3-none-any.whl", hash = "sha256:0bc275ff07032a84dfc68714dd4ce9d8ad8fd88c60b78aa78a1df3c5f66344eb", size = 325269, upload-time = "2026-06-23T13:41:18.112Z" },
 ]
 
 [package.optional-dependencies]

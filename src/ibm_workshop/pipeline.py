@@ -1,37 +1,24 @@
-"""Learner declaration.
-
-Owns: the function that builds and returns the (unfit) learner —
-typically a ``SkrubLearner`` produced from a skrub DataOps graph that
-composes the steps in ``data.py`` and ``features.py`` with the chosen
-estimator. Fitting, evaluation, and persistence happen elsewhere.
-"""
+"""Learner declaration for the random baseline model."""
 
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Any
 
 import skrub
-from sklearn.preprocessing import StandardScaler
+from sklearn.dummy import DummyClassifier
+from sklearn.pipeline import Pipeline
 
 from ibm_workshop.data import SAMPLE_ID_COL, TARGET_COL, load_table
+from ibm_workshop.features import make_scaler
 
 
-def build_learner(
-    data_dir_preview: str | Path | None = None,
-    *,
-    estimator: Any,
-) -> Any:
-    """Return the unfit learner for the experiment scripts to consume.
+def build_learner(data_dir_preview: str | Path | None = None):
+    """Return the unfit SkrubLearner for the baseline experiment.
 
     Parameters
     ----------
-    data_dir_preview : str or Path or None, optional
-        Preview value for the source-bound ``skrub.var("data_dir", ...)``
-        root. Pass an absolute path (e.g. ``PROJECT_ROOT / "data"``)
-        when iterating interactively so ``learner.skb.preview()`` works.
-    estimator
-        sklearn-compatible classifier attached at the tail of the graph.
+    data_dir_preview
+        Optional absolute path bound to ``data_dir`` for ``skb.preview()``.
     """
     data_dir = (
         skrub.var("data_dir", value=str(data_dir_preview))
@@ -46,6 +33,12 @@ def build_learner(
         data.drop(columns=[SAMPLE_ID_COL, TARGET_COL], errors="ignore")
         .skb.mark_as_X()
     )
-    X = X.skb.apply(StandardScaler())
+
+    estimator = Pipeline(
+        steps=[
+            ("preprocess", make_scaler()),
+            ("model", DummyClassifier(strategy="uniform", random_state=0)),
+        ]
+    )
     predictions = X.skb.apply(estimator, y=y)
     return predictions.skb.make_learner()

@@ -75,3 +75,12 @@ def load_test_targets() -> Any:
 def test_eval_env() -> dict[str, Any]:
     """Env-dict with features from ``load_table`` and aligned test labels."""
     return test_env(y=load_test_targets())
+
+
+def load_dataset(data_dir: str | Path | None = None) -> tuple[pd.DataFrame, Any]:
+    """Return materialized ``(X, y)`` from the public training table."""
+    root = Path(data_dir) if data_dir is not None else DATA_DIR
+    frame = load_table(str(root), "public")
+    y = frame[TARGET_COL].to_numpy()
+    features = frame.drop(columns=[SAMPLE_ID_COL, TARGET_COL])
+    return features, y

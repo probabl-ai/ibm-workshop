@@ -1,9 +1,10 @@
-"""Feature functions and transformers.
-
-Owns: pure-Python feature functions (stateless, attached to the
-pipeline via `.skb.apply_func`) and sklearn-compatible transformers
-(stateful, attached via `.skb.apply`). Composition into the learner
-happens in `pipeline.py`.
-"""
+"""Feature functions and transformers."""
 
 from __future__ import annotations
+
+from sklearn.preprocessing import StandardScaler
+
+
+def make_scaler() -> StandardScaler:
+    """Return a scaler for the numeric cytology feature columns."""
+    return StandardScaler()
