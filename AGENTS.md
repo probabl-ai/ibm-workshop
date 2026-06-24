@@ -28,15 +28,17 @@ uv run python -c "import skore, skrub, ibm_workshop; print('imports OK')"
 Check that `SKORE_HUB_API_KEY`, `SKORE_HUB_WORKSPACE`, and `SKORE_USERNAME` are
 set in `.env`. If not, interrupt and ask the user to provide them.
 
-## Skore Hub loggin
+## Skore Hub loggin -> BEFORE RUNNING ANY PYTHON SCRIPT
 
 Always login to Skore Hub with the `SKORE_HUB_API_KEY` environment variable, no interactive login.
+You do that by having the SKORE_HUB_API_KEY set in the shell environment (`set -a && source .env && set +a`) before calling any python script such that login() function can see the key.
 
 ## Submission guideline
 
 When pushing an estimator or a CV to Skore Hub, push it to the workspace and
 project specified in `SKORE_HUB_WORKSPACE`,
 and the name of the push should be `{SKORE_USERNAME}/{experiment-name}`.
+You must only push the Report on test set, not on the public data.
 
 ## Binding contract (skrub env-dict)
 
