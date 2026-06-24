@@ -1,45 +1,31 @@
 {
-  "source": "sklearn.datasets.load_breast_cancer",
-  "split": {
+  "description": "Wisconsin-style breast cancer cytology features (tabular binary classification)",
+  "origin": "sklearn.datasets.load_breast_cancer",
+  "features": {
+    "n_columns": 30,
+    "id_column": "sample_id",
+    "target_column": "target"
+  },
+  "splits": {
     "method": "train_test_split",
     "random_state": 42,
-    "test_size": 119
-  },
-  "corruption": {
-    "law": "structured_nonlinear",
-    "cell_score_tau": 1.4,
-    "cell_score": "sin(z * mean_radius / 8) + cos(column_index * 0.7) > tau",
-    "calibration_z": "standardize(mean_radius^2 / mean_texture)",
-    "area_drift": "size_columns *= exp(area_drift_amp * 0.01 * z)",
-    "area_drift_amp": 40.0,
-    "glitch_value": "column_median",
-    "label_noise_rate": 0.08,
-    "label_flip_rule": "highest_margin_on_clean_features",
-    "area_columns": [
-      "mean area",
-      "worst area",
-      "mean perimeter",
-      "worst perimeter"
-    ]
-  },
-  "public": {
-    "n_rows": 450,
-    "n_features": 30,
-    "target_counts": {
-      "0": 136,
-      "1": 314
+    "test_size": 119,
+    "public": {
+      "file": "public.csv",
+      "n_rows": 450,
+      "target_counts": {
+        "0": 136,
+        "1": 314
+      }
     },
-    "glitch_cell_fraction": 0.06318518518518519,
-    "labels_flipped": 36.0
-  },
-  "test": {
-    "n_rows": 119,
-    "n_features": 30,
-    "target_counts": {
-      "0": 40,
-      "1": 79
-    },
-    "glitch_cell_fraction": 0.06890756302521009,
-    "labels_flipped": 10.0
+    "test": {
+      "features_file": "test/features.csv",
+      "labels_file": "test/labels.csv",
+      "n_rows": 119,
+      "target_counts": {
+        "0": 40,
+        "1": 79
+      }
+    }
   }
 }
